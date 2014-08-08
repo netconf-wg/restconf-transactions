@@ -1,4 +1,4 @@
-Yang-I-D-skel
-=============
+YANG-I-D
+========
 
-Skeleton for YANG &amp; Internet Draft development repo
+Skeleton for YANG & Internet Draft development repo
