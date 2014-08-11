@@ -1,15 +1,15 @@
-MODULES = ietf-routing ietf-ipv4-unicast-routing ietf-ipv6-unicast-routing
+MODULES = 
 REVDATE ?= YYYY-MM-DD
-SAMPLE_BASE = sample
-SAMPLE_TYPE = get-reply
-baty = $(SAMPLE_BASE)-$(SAMPLE_TYPE)
-SAMPLE_INST = $(baty).xml
+EXAMPLE_BASE = example
+EXAMPLE_TYPE = get-reply
+baty = $(EXAMPLE_BASE)-$(EXAMPLE_TYPE)
+EXAMPLE_INST = $(baty).xml
 PYANG_OPTS =
 
 yams = $(addsuffix .yang, $(MODULES))
-artworks = $(addsuffix .aw, $(yams)) $(SAMPLE_INST).aw
+artworks = $(addsuffix .aw, $(yams)) $(EXAMPLE_INST).aw
 schemas = $(baty).rng $(baty).sch $(baty).dsrl
-y2dopts = -t $(SAMPLE_TYPE) -b $(SAMPLE_BASE)
+y2dopts = -t $(EXAMPLE_TYPE) -b $(EXAMPLE_BASE)
 
 .PHONY: all draft clean
 
@@ -35,8 +35,8 @@ yang.ent: $(yams)
 	@for f in $^; do                                                 \
 	  echo '<!ENTITY '"$$f SYSTEM \"yang/$$f.aw\">" >> $@;          \
 	done
-ifneq ($SAMPLE_INST,)
-	@echo '<!ENTITY '"$(SAMPLE_INST) SYSTEM \"yang/$(SAMPLE_INST).aw\">" >> $@
+ifneq ($EXAMPLE_INST,)
+	@echo '<!ENTITY '"$(EXAMPLE_INST) SYSTEM \"yang/$(EXAMPLE_INST).aw\">" >> $@
 endif
 
 %.yang.aw: %.yang
@@ -56,7 +56,7 @@ endif
 $(schemas): hello.xml $(yams)
 	yang2dsdl $(y2dopts) -L $<
 
-validate: $(SAMPLE_INST) $(schemas)
+validate: $(EXAMPLE_INST) $(schemas)
 	yang2dsdl -j -s $(y2dopts) -v $<
 
 model.tree: hello.xml $(yams)
