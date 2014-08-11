@@ -17,7 +17,7 @@ all: $(schemas) model.tree
 
 draft: $(artworks) yang.ent
 
-hello.xml: $(yams)
+hello.xml: $(yams) hello-external.ent
 	@echo '<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">' > $@
 	@echo '<capabilities>' >> $@
 	@for m in $(yams); do \
