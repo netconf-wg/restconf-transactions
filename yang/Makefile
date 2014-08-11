@@ -19,14 +19,15 @@ draft: $(artworks) yang.ent
 
 hello.xml: $(yams)
 	@echo '<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">' > $@
-	@echo '  <capabilities>' >> $@
+	@echo '<capabilities>' >> $@
 	@for m in $(yams); do \
 	  capa=$$(pyang -f capability $$m | sed 's/&/&amp;/g'); \
 	  if [ "$$capa" != "" ]; then \
-	    echo "    <capability>$$capa</capability>" >> $@; \
+	    echo "<capability>$$capa</capability>" >> $@; \
 	  fi \
-	done 
-	@echo '  </capabilities>' >> $@
+	done
+	cat hello-external.ent >> $@
+	@echo '</capabilities>' >> $@
 	@echo '</hello>' >> $@
 
 
