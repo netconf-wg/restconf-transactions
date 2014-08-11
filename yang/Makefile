@@ -11,7 +11,7 @@ artworks = $(addsuffix .aw, $(yams)) $(EXAMPLE_INST).aw
 schemas = $(baty).rng $(baty).sch $(baty).dsrl
 y2dopts = -t $(EXAMPLE_TYPE) -b $(EXAMPLE_BASE)
 
-.PHONY: all draft clean
+.PHONY: all draft clean validate rnc
 
 all: $(schemas) model.tree
 
@@ -56,6 +56,11 @@ endif
 
 $(schemas): hello.xml $(yams)
 	yang2dsdl $(y2dopts) -L $<
+
+%.rnc: %.rng
+	trang -I rng -O rnc $< $@
+
+rnc: $(baty).rnc
 
 validate: $(EXAMPLE_INST) $(schemas)
 	yang2dsdl -j -s $(y2dopts) -v $<
