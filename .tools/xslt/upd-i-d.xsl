@@ -3,6 +3,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		version="1.0">
 
+<xsl:param name="i-d-name">draft-FOO</xsl:param>
 <xsl:param name="i-d-rev">XX</xsl:param>
 <xsl:param name="date">YYYY-MM-DD</xsl:param>
 <xsl:variable name="mm-dd" select="substring-after($date,'-')"/>
@@ -27,6 +28,21 @@
 
 <xsl:template match="*|@*|text()|comment()|processing-instruction()">
   <xsl:copy>
+    <xsl:apply-templates
+	select="*|@*|text()|comment()|processing-instruction()"/>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="/rfc">
+  <xsl:copy>
+    <xsl:if test="not(@docName)">
+      <xsl:attribute name="docName">
+	<xsl:value-of select="concat($i-d-name,'-',$i-d-rev)"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:if test="not(@ipr)">
+      <xsl:attribute name="ipr">trust200902</xsl:attribute>
+    </xsl:if>
     <xsl:apply-templates
 	select="*|@*|text()|comment()|processing-instruction()"/>
   </xsl:copy>
