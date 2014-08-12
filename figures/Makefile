@@ -1,7 +1,4 @@
-FIGURES = state-tree.txt config-tree.txt \
-	  state-coll-tree.txt config-coll-tree.txt \
-	  static-routes-tree.txt diagram.txt \
-	  example-net.txt example-rip.yang
+FIGURES =
 artworks = $(addsuffix .aw, $(FIGURES))
 
 draft: $(artworks) figures.ent

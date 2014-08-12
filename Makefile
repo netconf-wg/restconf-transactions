@@ -1,5 +1,5 @@
-I_D = draft-ietf-netmod-routing-cfg
-REVNO = 15
+I_D =  # Name of the Intenet-Draft (without revision).
+REVNO = # Current revision number
 DATE ?= $(shell date +%F)
 
 idrev = $(I_D)-$(REVNO)
