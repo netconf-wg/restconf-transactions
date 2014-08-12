@@ -9,7 +9,7 @@ ifeq ($(FIGURES),)
 else
 	@echo '<!-- External entities for files with figures -->' > $@; \
 	for f in $^; do                                            \
-	  echo '<!ENTITY '"$$f SYSTEM \"figures/$$f.aw\">" >> $@;  \
+	  echo '<!ENTITY '"$$f SYSTEM \"$$f.aw\">" >> $@;  \
 	done
 endif
 

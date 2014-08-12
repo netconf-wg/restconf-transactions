@@ -34,10 +34,10 @@ hello.xml: $(yams) hello-external.ent
 yang.ent: $(yams)
 	@echo '<!-- External entities for files with modules -->' > $@
 	@for f in $^; do                                                 \
-	  echo '<!ENTITY '"$$f SYSTEM \"yang/$$f.aw\">" >> $@;          \
+	  echo '<!ENTITY '"$$f SYSTEM \"$$f.aw\">" >> $@;          \
 	done
 ifneq ($EXAMPLE_INST,)
-	@echo '<!ENTITY '"$(EXAMPLE_INST) SYSTEM \"yang/$(EXAMPLE_INST).aw\">" >> $@
+	@echo '<!ENTITY '"$(EXAMPLE_INST) SYSTEM \"$(EXAMPLE_INST).aw\">" >> $@
 endif
 
 %.yang.aw: %.yang
