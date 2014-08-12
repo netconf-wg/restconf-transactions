@@ -23,4 +23,4 @@ $(idrev).txt: $(idrev).xml
 clean:
 	@$(MAKE) -C figures clean
 	@$(MAKE) -C yang clean
-	rm -rf $(idrev).*
+	rm -rf $(idrev).* references.ent
