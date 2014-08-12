@@ -4,7 +4,7 @@ DATE ?= $(shell date +%F)
 
 idrev = $(I_D)-$(REVNO)
 xsldir = .tools/xslt
-xslpars = --stringparam date $(DATE) -- stringparam i-d-name $(I_D) \
+xslpars = --stringparam date $(DATE) --stringparam i-d-name $(I_D) \
 	  --stringparam i-d-rev $(REVNO)
 
 .PHONY: init validate clean
