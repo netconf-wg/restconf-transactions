@@ -5,7 +5,7 @@ draft: $(artworks) figures.ent
 
 figures.ent: $(FIGURES)
 ifeq ($(FIGURES),)
-	touch $@
+	@touch $@
 else
 	@echo '<!-- External entities for files with figures -->' > $@; \
 	for f in $^; do                                            \
