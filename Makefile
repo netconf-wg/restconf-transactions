@@ -14,7 +14,6 @@ all: $(idrev).txt
 $(idrev).xml: $(I_D).xml
 	@$(MAKE) -C yang draft
 	@$(MAKE) -C figures draft
-	xsltproc -o references.ent $(xsldir)/get-refs.xsl $<
 	xsltproc $(xslpars) $(xsldir)/upd-i-d.xsl $< | xmllint --noent -o $@ -
 
 $(idrev).txt: $(idrev).xml
@@ -23,4 +22,4 @@ $(idrev).txt: $(idrev).xml
 clean:
 	@$(MAKE) -C figures clean
 	@$(MAKE) -C yang clean
-	rm -rf $(idrev).* references.ent
+	rm -rf $(idrev).*

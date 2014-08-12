@@ -69,4 +69,4 @@ model.tree: hello.xml $(yams)
 	pyang -f tree -o $@ -L $<
 
 clean:
-	@rm -rf $(artworks) $(schemas) yang.ent hello.xml model.tree
+	@rm -rf $(artworks) $(schemas) yang.ent hello.xml model.tree $(baty).rnc
