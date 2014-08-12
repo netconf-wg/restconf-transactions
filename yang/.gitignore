@@ -2,6 +2,6 @@ hello.xml
 yang.ent
 model.tree
 *.aw
-*.rng
+*.rn[gc]
 *.sch
 *.dsrl
