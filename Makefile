@@ -14,10 +14,10 @@ all: $(idrev).txt
 $(idrev).xml: $(I_D).xml
 	@$(MAKE) -C yang draft
 	@$(MAKE) -C figures draft
-	xsltproc $(xslpars) $(xsldir)/upd-i-d.xsl $< | xmllint --noent -o $@ -
+	@xsltproc $(xslpars) $(xsldir)/upd-i-d.xsl $< | xmllint --noent -o $@ -
 
 $(idrev).txt: $(idrev).xml
-	xml2rfc $<
+	@xml2rfc --dtd=.tools/schema/rfc2629.dtd $<
 
 clean:
 	@$(MAKE) -C figures clean
