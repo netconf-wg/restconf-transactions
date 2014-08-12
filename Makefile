@@ -3,7 +3,7 @@ REVNO = 15
 DATE ?= $(shell date +%F)
 
 idrev = $(I_D)-$(REVNO)
-updid = .tools/xslt/upd-i-d.xsl
+xsldir = .tools/xslt
 xslpars = --stringparam date $(DATE) --stringparam i-d-rev $(REVNO)
 
 .PHONY: init validate clean
@@ -14,7 +14,8 @@ all:
 	$(idrev).txt
 
 $(idrev).xml: $(I_D).xml
-	xsltproc $(xslpars) $(updid) $< | xmllint --noent -o $@ -
+	xsltproc -o references.ent $(xsldir)/get-refs.xsl $<
+	xsltproc $(xslpars) $(xsldir)/upd-i-d.xsl $< | xmllint --noent -o $@ -
 
 $(idrev).txt: $(idrev).xml
 	xml2rfc $<
