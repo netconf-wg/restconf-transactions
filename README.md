@@ -50,8 +50,8 @@ and figures (if any) and push them into the forked project
 repository. Put everything into the main directory, do not create any
 subdirectories.
 
-Move the file project-README.md to README.md and add all necessary
-information about the project.
+Move (`git mv`) the file project-README.md to README.md and add all
+necessary information about the project.
 
 The Makefile has to be updated as follows:
 
@@ -64,8 +64,8 @@ The Makefile has to be updated as follows:
   modules and submodules that comprise the data model. Use only module
   names without the `.yang` extension.
   
-* The `FIGURES` variable should contain _names of files_ containing
-  tree diagrams, code snippets or other ASCII art.
+* The `FIGURES` variable should contain names of files containing
+  tree diagrams, code snippets or other ascii art.
 
 * The variables `EXAMPLE_BASE` and `EXAMPLE_TYPE` together determine
   the file name and type of an example XML instance of the data model
@@ -158,3 +158,22 @@ Other useful Makefile targets are:
 Required Software
 -----------------
 
+The environment provided by YANG-I-D was designed for Unix-like
+operating systems and tested on OS X and Linux. Instructions or
+patches for other operating systems (Windows) are welcome.
+
+Apart from the standard Mac/Linux system software (_GNU make_ and
+_bash_), the following software packages have to be available:
+
+* [Libxml2 suite](http://xmlsoft.org/), in particular _xmllint_ and
+  _xsltproc_.
+* [pyang](https://code.google.com/p/pyang/)
+* [xml2rfc](http://xml2rfc.ietf.org/)
+
+These Java tools are also recommended although not strictly necessary:
+
+* [Jing](http://www.thaiopensource.com/relaxng/jing.html) – if you
+  don't have it, remove the `-j` option in the `validate` target's
+  action, and _xmllint_ will be used instead.
+* [Trang](http://www.thaiopensource.com/relaxng/trang.html) – needed
+  only for the `rnc` target.
