@@ -9,9 +9,10 @@
 %figures;
 <!ENTITY % yang SYSTEM "yang.ent">
 %yang;
-<!-- Add other entity declarations here, e.g. for bibliographic items: -->
+<!-- Add other entity declarations here, e.g. for bibliographic items
+(you have to be connected to use the one below). -->
 <!ENTITY RFC6020 SYSTEM
-"http://xml.resource.org/public/rfc/bibxml/reference.RFC.6020.xml">
+"http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6020.xml">
 ]>
 
 <?rfc strict="yes"?>

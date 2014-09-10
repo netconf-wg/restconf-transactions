@@ -104,12 +104,12 @@ Internet-Draft Source
 ---------------------
 
 The YANG-I-D repository contains a template for an Internet-Draft,
-[draft.xml.template](https://github.com/llhotka/YANG-I-D/blob/master/draft.xml.template). The
-easiest way to start writing the I-D is to copy this template to the
-file `$(I_D).xml`, where `$(I_D)` denotes the value of the `I_D`
+[draft.xml.template](https://github.com/llhotka/YANG-I-D/blob/master/draft.xml.template).
+The easiest way to start writing the I-D is to copy this template to
+the file `$(I_D).xml`, where `$(I_D)` denotes the value of the `I_D`
 variable in the Makefile, and commit this file to git. The template
-file contains instructions for integrating YANG modules and other
-external entities into the I-D text.
+file contains instructions for adapting the I-D source and integrating
+YANG modules or other external entities into the text.
 
 The XML source of the I-D should follow the schema and
 rules of
