@@ -63,6 +63,10 @@ else
 	done
 endif
 
+%.yang: %.yinx
+	@xsltproc $(xsldir)/canonicalize.xsl $< | \
+	  xsltproc --xinclude --output $@ $(xslpars) $(xsldir)/yin2yang.xsl -
+
 ietf-%.yang.aw: ietf-%.yang
 	@pyang $(PYANG_OPTS) --ietf $<
 	@echo '<artwork>' > $@
