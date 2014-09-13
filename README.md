@@ -5,7 +5,7 @@ YANG-I-D
 create an environment for integrated development of YANG modules and
 Internet-Drafts.
 
-Edit the forked project according to the following template:
+Edit the forked project's README according to the following template:
 
 ---
 
