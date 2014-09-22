@@ -24,7 +24,8 @@ y2dopts = -t $(EXAMPLE_TYPE) -b $(EXAMPLE_BASE)
 all: $(idrev).txt $(schemas) model.tree
 
 $(idrev).xml: $(I_D).xml $(artworks) figures.ent yang.ent
-	@xsltproc $(xslpars) $(xsldir)/upd-i-d.xsl $< | xmllint --noent -o $@ -
+	@xsltproc $(xslpars) $(xsldir)/upd-i-d.xsl $< | \
+	  xmllint --xinclude --noent -o $@ -
 
 $(idrev).txt: $(idrev).xml
 	@xml2rfc --dtd=.tools/schema/rfc2629.dtd $<

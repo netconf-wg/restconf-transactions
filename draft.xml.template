@@ -9,10 +9,6 @@
 %figures;
 <!ENTITY % yang SYSTEM "yang.ent">
 %yang;
-<!-- Add other entity declarations here, e.g. for bibliographic items
-(you have to be connected to use the one below). -->
-<!ENTITY RFC6020 SYSTEM
-"http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6020.xml">
 ]>
 
 <?rfc strict="yes"?>
@@ -23,7 +19,8 @@
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
 
-<rfc category="std">
+<rfc category="std"
+     xmlns:xi="http://www.w3.org/2001/XInclude">
   <front>
     <title abbrev="i-d-abbrev">I-D Title</title>
     <author fullname="Albert U. Thor" initials="A. U." surname="Thor">
@@ -89,8 +86,7 @@
 
   <back>
     <references title="Normative References">
-      <!-- This is for the entity appearing in the DTD declaration. -->
-      &RFC6020;
+      <!-- RFC, I-D and W3C references will be added automatically. -->
     </references>
 
     <section anchor="rpc-example" title="Example: NETCONF &lt;get&gt; Reply">
