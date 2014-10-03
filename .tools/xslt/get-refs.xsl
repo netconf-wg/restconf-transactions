@@ -17,7 +17,7 @@
 <xsl:template match="xref">
   <xsl:text></xsl:text>
   <xsl:value-of
-      select="concat('&lt;!ENTITY ', @target, '  SYSTEM ', $bibxml)"/>
+      select="concat('&lt;!ENTITY ', @target, ' SYSTEM &quot;', $bibxml)"/>
   <xsl:choose>
     <xsl:when test="starts-with(@target, 'RFC')">
       <xsl:text>/reference.RFC.</xsl:text>
