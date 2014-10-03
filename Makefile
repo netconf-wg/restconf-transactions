@@ -19,11 +19,11 @@ xslpars = --stringparam date $(DATE) --stringparam i-d-name $(I_D) \
 schemas = $(baty).rng $(baty).sch $(baty).dsrl
 y2dopts = -t $(EXAMPLE_TYPE) -b $(EXAMPLE_BASE)
 
-.PHONY: all validate clean rnc
+.PHONY: all validate clean rnc refs
 
 all: $(idrev).txt $(schemas) model.tree
 
-$(idrev).xml: $(I_D).xml $(artworks) stdrefs.ent figures.ent yang.ent
+$(idrev).xml: $(I_D).xml $(artworks) figures.ent yang.ent
 	@xsltproc $(xslpars) $(xsldir)/upd-i-d.xsl $< | xmllint --noent -o $@ -
 
 $(idrev).txt: $(idrev).xml
@@ -43,8 +43,8 @@ hello.xml: $(yams) hello-external.ent
 	@echo '</capabilities>' >> $@
 	@echo '</hello>' >> $@
 
-stdrefs.ent: $(I_D).xml
-	xsltproc --output $@ $(xsldir)/get-refs.xsl $<
+refs:
+	xsltproc --output stdrefs.ent $(xsldir)/get-refs.xsl $(I_D).xml
 
 yang.ent: $(yams)
 	@echo '<!-- External entities for files with modules -->' > $@
