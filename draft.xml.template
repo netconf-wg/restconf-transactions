@@ -5,14 +5,12 @@
 <!-- Replace with actual working group -->
 <!ENTITY % WG SYSTEM ".tools/bplate/netmod.ent">
 %WG;
+<!ENTITY % stdrefs SYSTEM "stdrefs.ent">
+%stdrefs;
 <!ENTITY % figures SYSTEM "figures.ent">
 %figures;
 <!ENTITY % yang SYSTEM "yang.ent">
 %yang;
-<!-- Add other entity declarations here, e.g. for bibliographic items
-(you have to be connected to use the one below). -->
-<!ENTITY RFC6020 SYSTEM
-"http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6020.xml">
 ]>
 
 <?rfc strict="yes"?>
@@ -89,8 +87,7 @@
 
   <back>
     <references title="Normative References">
-      <!-- This is for the entity appearing in the DTD declaration. -->
-      &RFC6020;
+      <!-- Look at stdrefs.ent, and add entity references here. -->
     </references>
 
     <section anchor="rpc-example" title="Example: NETCONF &lt;get&gt; Reply">
