@@ -1,5 +1,8 @@
-<!ENTITY rfc-ed-hint '
-<t>RFC Ed.: In this section, replace all occurrences of &apos;XXXX&apos;
+<!ENTITY ed-hint-fill-in '
+<t>RFC Editor: In this section, replace all occurrences of &apos;XXXX&apos;
 with the actual RFC number and all occurrences of the revision date
 below with the date of RFC publication (and remove this note).</t>
+'>
+<!ENTITY ed-hint-remove-sec '
+<t>RFC Editor: Remove this section upon publication as an RFC.</t>
 '>
