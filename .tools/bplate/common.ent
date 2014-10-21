@@ -1,3 +1,9 @@
+<!ENTITY kw-2119 '
+<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL"
+in this document are to be interpreted as described in <xref
+target="RFC2119"/>.</t>
+'>
 <!ENTITY ed-hint-fill-in '
 <t>RFC Editor: In this section, replace all occurrences of &apos;XXXX&apos;
 with the actual RFC number and all occurrences of the revision date
