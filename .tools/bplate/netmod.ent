@@ -1,4 +1,7 @@
-<!ENTITY wg '<workgroup>NETMOD Working Group</workgroup>'>
+<!ENTITY wg '
+<area>Operations and Management</area>
+<workgroup>NETMOD Working Group</workgroup>
+'>
 <!ENTITY treesym '
 <t>The meaning of the symbols in these diagrams is as follows:
 <list style="symbols">
