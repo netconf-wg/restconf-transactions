@@ -19,9 +19,11 @@ xslpars = --stringparam date $(DATE) --stringparam i-d-name $(I_D) \
 schemas = $(baty).rng $(baty).sch $(baty).dsrl
 y2dopts = -t $(EXAMPLE_TYPE) -b $(EXAMPLE_BASE)
 
-.PHONY: all validate clean rnc refs
+.PHONY: all clean rnc refs validate yang
 
 all: $(idrev).txt $(schemas) model.tree
+
+yang: $(yams)
 
 $(idrev).xml: $(I_D).xml $(artworks) figures.ent yang.ent
 	@xsltproc $(xslpars) $(xsldir)/upd-i-d.xsl $< | xmllint --noent -o $@ -
