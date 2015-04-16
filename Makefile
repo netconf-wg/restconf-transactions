@@ -101,4 +101,4 @@ model.tree: hello.xml
 
 clean:
 	@rm -rf *.rng *.rnc *.sch *.dsrl hello.xml model.tree \
-	        $(idrev).* $(artworks) figures.ent yang.ent
+	        $(yams) $(idrev).* $(artworks) figures.ent yang.ent
