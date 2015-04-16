@@ -5,7 +5,7 @@ module %%MODNAME%% {
 
   namespace "urn:ietf:params:xml:ns:yang:%%MODNAME%%";
 
-  prefix "md";
+  prefix "%%PRF%%";
 
   organization
     "IETF %%WG%% Working Group";
@@ -18,10 +18,10 @@ module %%MODNAME%% {
                <mailto:%%CHAIR_ADDRESS%%>
 
      Editor:   %%EDITOR%%
-               <mailto:%%EDITOR_ADDRESS>";
+               <mailto:%%EDITOR_ADDRESS%%>";
 
   description
-    "%%SHORT_MODULE_DESCRIPTION
+    "%%SHORT_MODULE_DESCRIPTION%%
 
      Copyright (c) 2014 IETF Trust and the persons identified as
      authors of the code. All rights reserved.
@@ -33,8 +33,14 @@ module %%MODNAME%% {
      Relating to IETF Documents
      (http://trustee.ietf.org/license-info).
 
-     This version of this YANG module is part of RFC XXXX; see the
-     RFC itself for full legal notices.";
+     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
+     NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'MAY', and
+     'OPTIONAL' in the module text are to be interpreted as described
+     in RFC 2119 (http://tools.ietf.org/html/rfc2119).
+
+     This version of this YANG module is part of RFC XXXX
+     (http://tools.ietf.org/html/rfcXXXX); see the RFC itself for
+     full legal notices.";
 
   revision %%DATE%% {
     description
