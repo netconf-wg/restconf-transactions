@@ -67,6 +67,10 @@ else
 	done
 endif
 
+%.yang: %.yinx
+	@xsltproc --xinclude $(xsldir)/canonicalize.xsl $< | \
+	  xsltproc --output $@ $(xslpars) $(xsldir)/yin2yang.xsl -
+
 ietf-%.yang.aw: ietf-%.yang
 	@pyang $(PYANG_OPTS) --ietf $<
 	@echo '<artwork>' > $@
@@ -97,4 +101,4 @@ model.tree: hello.xml
 
 clean:
 	@rm -rf *.rng *.rnc *.sch *.dsrl hello.xml model.tree \
-	        $(idrev).* $(artworks) figures.ent yang.ent
+	        $(yams) $(idrev).* $(artworks) figures.ent yang.ent
