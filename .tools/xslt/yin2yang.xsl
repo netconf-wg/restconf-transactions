@@ -261,6 +261,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
   <xsl:template name="chop-arg">
     <xsl:param name="token-delim" select="'/'"/>
+    <xsl:param name="after" select="2"/>
     <xsl:variable name="qchar">"</xsl:variable>
     <xsl:variable name="cind">
       <xsl:call-template name="indent">
@@ -300,7 +301,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 	  <xsl:with-param name="text" select="$txt"/>
 	  <xsl:with-param
 	      name="length"
-	      select="$line-length - 2 -
+	      select="$line-length - $after -
 		      string-length(concat($cind, local-name(..)))"/>
 	  <xsl:with-param name="prefix">
 	    <xsl:value-of select="$cind"/>
@@ -425,6 +426,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 	  <xsl:otherwise>/</xsl:otherwise>
 	</xsl:choose>
       </xsl:with-param>
+      <xsl:with-param name="after" select="3"/>
     </xsl:call-template>
   </xsl:template>
 
