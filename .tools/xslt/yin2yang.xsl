@@ -371,6 +371,12 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="yin:modifier">
+    <xsl:call-template name="statement">
+      <xsl:with-param name="arg" select="@value"/>
+    </xsl:call-template>
+  </xsl:template>
+
   <xsl:template match="yin:path|yin:pattern">
     <xsl:call-template name="keyword"/>
     <xsl:apply-templates select="@value"/>
