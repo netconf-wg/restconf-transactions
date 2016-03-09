@@ -133,6 +133,9 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
       <xsl:apply-templates
 	  select="html:*|xi:*|@*|text()|processing-instruction()"/>
       <xsl:apply-templates select="yin:prefix"/>
+      <xsl:apply-templates select="yin:revision-date"/>
+      <xsl:apply-templates select="yin:description"/>
+      <xsl:apply-templates select="yin:reference"/>
     </xsl:copy>
   </xsl:template>
   <xsl:template match="yin:include">
@@ -140,6 +143,9 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     <xsl:copy>
       <xsl:apply-templates
 	  select="html:*|xi:*|@*|text()|processing-instruction()"/>
+      <xsl:apply-templates select="yin:revision-date"/>
+      <xsl:apply-templates select="yin:description"/>
+      <xsl:apply-templates select="yin:reference"/>
     </xsl:copy>
   </xsl:template>
   <xsl:template match="yin:namespace">
