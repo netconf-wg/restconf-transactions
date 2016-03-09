@@ -41,7 +41,7 @@ $(idrev).xml: $(I_D).xml $(artworks) figures.ent yang.ent
 $(idrev).txt: $(idrev).xml
 	@xml2rfc --dtd=.tools/schema/rfc2629.dtd $<
 
-hello.xml: $(yams) hello-external.ent
+hello.xml: $(yams) $(yass) hello-external.ent
 	@echo '<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">' > $@
 	@echo '<capabilities>' >> $@
 	@echo '<capability>urn:ietf:params:netconf:base:1.1</capability>' >> $@
