@@ -73,23 +73,23 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
        embedding -->
   <xsl:param name="list-bullets" select="'-*o+'"/>
 
-  <xsl:variable name="revision">
-    <xsl:choose>
-      <xsl:when test="$date">
-	<xsl:value-of select="$date"/>
-      </xsl:when>
-      <xsl:otherwise>
-	<xsl:value-of select="/yin:module/yin:revision/@date"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <xsl:variable name="unit-indent">
     <xsl:call-template name="repeat-string">
       <xsl:with-param name="count" select="$indent-step"/>
       <xsl:with-param name="string" select="' '"/>
     </xsl:call-template>
   </xsl:variable>
+
+  <xsl:template name="rev-date">
+    <xsl:choose>
+      <xsl:when test="$date">
+	<xsl:value-of select="$date"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="@date"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
   <xsl:template name="repeat-string">
     <xsl:param name="count"/>
@@ -450,7 +450,17 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
   <xsl:template match="yin:revision">
     <xsl:call-template name="statement">
-      <xsl:with-param name="arg" select="$revision"/>
+      <xsl:with-param name="arg">
+	<xsl:call-template name="rev-date"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="yin:include/yin:revision-date">
+    <xsl:call-template name="statement">
+      <xsl:with-param name="arg">
+	<xsl:call-template name="rev-date"/>
+      </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
 
