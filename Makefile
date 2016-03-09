@@ -15,7 +15,7 @@ export PYANG_RNG_LIBDIR ?= /usr/share/yang/schema
 export PYANG_XSLT_DIR ?= /usr/share/yang/xslt
 export YANG_MODPATH ?= .:/usr/share/yang/modules/ietf:/usr/share/yang/modules/iana
 
-artworks = $(addsuffix .aw, $(yams) $(yass)) $(EXAMPLE_INST).aw \
+artworks = $(addsuffix .aw, $(yass) $(yams)) $(EXAMPLE_INST).aw \
 	   $(addsuffix .aw, $(FIGURES))
 idrev = $(I_D)-$(REVNO)
 yams = $(addsuffix .yang, $(MODULES))
@@ -32,7 +32,7 @@ all: $(idrev).txt $(schemas) model.tree
 
 refs: stdrefs.ent
 
-yang: $(yams) $(yass)
+yang: $(yass) $(yams)
 
 $(idrev).xml: $(I_D).xml $(artworks) figures.ent yang.ent
 	@xsltproc --novalid $(xslpars) $(xsldir)/upd-i-d.xsl $< | \
@@ -41,7 +41,7 @@ $(idrev).xml: $(I_D).xml $(artworks) figures.ent yang.ent
 $(idrev).txt: $(idrev).xml
 	@xml2rfc --dtd=.tools/schema/rfc2629.dtd $<
 
-hello.xml: $(yams) $(yass) hello-external.ent
+hello.xml: $(yass) $(yams) hello-external.ent
 	@echo '<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">' > $@
 	@echo '<capabilities>' >> $@
 	@echo '<capability>urn:ietf:params:netconf:base:1.1</capability>' >> $@
@@ -58,7 +58,7 @@ hello.xml: $(yams) $(yass) hello-external.ent
 stdrefs.ent: $(I_D).xml
 	xsltproc --novalid --output $@ $(xsldir)/get-refs.xsl $<
 
-yang.ent: $(yams) $(yass)
+yang.ent: $(yass) $(yams)
 	@echo '<!-- External entities for files with modules -->' > $@
 	@for f in $^; do                                                 \
 	  echo '<!ENTITY '"$$f SYSTEM \"$$f.aw\">" >> $@;          \
