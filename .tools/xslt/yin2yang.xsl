@@ -333,7 +333,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
       match="yin:action|yin:anydata|yin:anyxml|yin:argument|yin:base
 	     |yin:bit|yin:case|yin:choice|yin:container|yin:enum
 	     |yin:extension|yin:feature|yin:grouping|yin:identity
-	     |yin:if-feature|yin:leaf|yin:leaf-list|yin:list
+	     |yin:leaf|yin:leaf-list|yin:list
 	     |yin:module|yin:notification|yin:rpc|yin:submodule
 	     |yin:type|yin:typedef|yin:uses">
     <xsl:call-template name="statement">
@@ -353,7 +353,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="yin:units">
+  <xsl:template match="yin:units|yin:if-feature">
     <xsl:call-template name="statement-dq">
       <xsl:with-param name="arg" select="@name"/>
     </xsl:call-template>
