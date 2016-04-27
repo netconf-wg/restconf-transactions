@@ -342,6 +342,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
       <xsl:apply-templates select="yin:type"/>
       <xsl:apply-templates select="yin:units"/>
       <xsl:apply-templates select="yin:must"/>
+      <xsl:apply-templates select="yin:default"/>
       <xsl:apply-templates select="yin:config"/>
       <xsl:apply-templates select="yin:min-elements"/>
       <xsl:apply-templates select="yin:max-elements"/>
