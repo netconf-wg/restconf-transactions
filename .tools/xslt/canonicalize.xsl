@@ -230,6 +230,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     <xsl:copy>
       <xsl:apply-templates
 	  select="html:*|xi:*|@*|text()|processing-instruction()"/>
+      <xsl:apply-templates select="yin:modifier"/>
       <xsl:apply-templates select="yin:error-message"/>
       <xsl:apply-templates select="yin:error-app-tag"/>
       <xsl:apply-templates select="yin:description"/>
@@ -383,7 +384,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 		       yin:status|yin:config|yin:mandatory|yin:presence|
 		       yin:ordered-by|yin:value|yin:error-app-tag|
 		       yin:min-elements|yin:max-elements|yin:key|
-		       yin:revision-date|yin:unique">
+		       yin:revision-date|yin:unique|yin:modifier">
     <xsl:call-template name="preceding-comment"/>
     <xsl:copy>
       <xsl:apply-templates
