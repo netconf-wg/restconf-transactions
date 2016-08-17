@@ -19,8 +19,8 @@ below with the date of RFC publication (and remove this note).</t>
   <t>Curly braces "{" and "}" contain names of optional features that
   make the corresponding node conditional.</t>
   <t>Abbreviations before data node names: "rw" means configuration
-  (read-write), "ro" state data (read-only), "-x" RPC operations, and
-  "-n" notifications.</t>
+  (read-write), "ro" state data (read-only), "-x" RPC operations or
+  actions, and "-n" notifications.</t>
   <t>Symbols after data node names: "?" means an optional node, "!" a
   container with presence, and "*" denotes a "list" or "leaf-list".</t>
   <t>Parentheses enclose choice and case nodes, and case nodes are
