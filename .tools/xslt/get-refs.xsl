@@ -5,7 +5,7 @@
 
   <xsl:output method="text"/>
   <xsl:variable
-      name="bibxml">http://xml2rfc.ietf.org/public/rfc/bibxml</xsl:variable>
+      name="bibxml">https://xml2rfc.tools.ietf.org/public/rfc/bibxml</xsl:variable>
   <xsl:template match="/rfc">
     <xsl:apply-templates
 	select="descendant::xref[(starts-with(@target, 'RFC') or
