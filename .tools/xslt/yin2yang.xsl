@@ -375,15 +375,15 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
       match="yin:config|yin:default|yin:deviate|yin:error-app-tag
 	     |yin:fraction-digits|yin:key|yin:length|yin:mandatory
 	     |yin:max-elements|yin:min-elements|yin:ordered-by
-	     |yin:pattern|yin:position|yin:prefix|yin:presence
-	     |yin:range|yin:require-instance|yin:status|yin:value
-	     |yin:yang-version|yin:yin-element">
+	     |yin:pattern|yin:position|yin:presence|yin:range
+	     |yin:require-instance|yin:status|yin:value
+	     |yin:yin-element">
     <xsl:call-template name="statement-dq">
       <xsl:with-param name="arg" select="@value"/>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="yin:modifier">
+  <xsl:template match="yin:modifier|yin:prefix|yin:yang-version">
     <xsl:call-template name="statement">
       <xsl:with-param name="arg" select="@value"/>
     </xsl:call-template>
