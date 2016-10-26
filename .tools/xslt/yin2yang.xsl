@@ -333,8 +333,8 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
       match="yin:action|yin:anydata|yin:anyxml|yin:argument|yin:base
 	     |yin:bit|yin:case|yin:choice|yin:container|yin:enum
 	     |yin:extension|yin:feature|yin:grouping|yin:identity
-	     |yin:leaf|yin:leaf-list|yin:list
-	     |yin:module|yin:notification|yin:rpc|yin:submodule
+	     |yin:leaf|yin:leaf-list|yin:list|yin:module
+	     |yin:notification|yin:prefix|yin:rpc|yin:submodule
 	     |yin:type|yin:typedef|yin:uses">
     <xsl:call-template name="statement">
       <xsl:with-param name="arg" select="@name"/>
@@ -375,9 +375,9 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
       match="yin:config|yin:default|yin:deviate|yin:error-app-tag
 	     |yin:fraction-digits|yin:key|yin:length|yin:mandatory
 	     |yin:max-elements|yin:min-elements|yin:ordered-by
-	     |yin:pattern|yin:position|yin:prefix
-	     |yin:presence|yin:range|yin:require-instance
-	     |yin:status|yin:value|yin:yang-version|yin:yin-element">
+	     |yin:pattern|yin:position|yin:presence|yin:range
+	     |yin:require-instance|yin:status|yin:value
+	     |yin:yang-version|yin:yin-element">
     <xsl:call-template name="statement-dq">
       <xsl:with-param name="arg" select="@value"/>
     </xsl:call-template>
