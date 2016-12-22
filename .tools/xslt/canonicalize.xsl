@@ -18,10 +18,12 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 -->
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-		xmlns:xi="http://www.w3.org/2001/XInclude"
-		xmlns:html="http://www.w3.org/1999/xhtml"
-		xmlns:yin="urn:ietf:params:xml:ns:yang:yin:1"
+<xsl:stylesheet
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:yin="urn:ietf:params:xml:ns:yang:yin:1"
+    xmlns:ymt="urn:ietf:params:xml:ns:yang:ietf-yang-text-media-type"
 		version="1.0">
   <xsl:output method="xml" encoding="utf-8"/>
   <xsl:strip-space elements="*"/>
@@ -33,7 +35,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     </xsl:if>
   </xsl:template>
   <xsl:template
-      match="html:*|xi:*|@*|comment()|text()|processing-instruction()">
+      match="html:*|ymt:*|xi:*|@*|comment()|text()|processing-instruction()">
     <xsl:copy-of select="."/>
   </xsl:template>
   <xsl:template name="data-def-stmt">
