@@ -52,9 +52,9 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
       <xsl:apply-templates select="yin:yang-version"/>
       <xsl:apply-templates select="yin:namespace"/>
       <xsl:apply-templates select="yin:prefix"/>
-      <xsl:apply-templates select="ymt:text-media-type"/>
       <xsl:apply-templates select="yin:import"/>
       <xsl:apply-templates select="yin:include"/>
+      <xsl:apply-templates select="ymt:text-media-type"/>
       <xsl:apply-templates select="yin:organization"/>
       <xsl:apply-templates select="yin:contact"/>
       <xsl:apply-templates select="yin:description"/>
@@ -74,9 +74,9 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 	  select="html:*|xi:*|@*|text()|processing-instruction()"/>
       <xsl:apply-templates select="yin:yang-version"/>
       <xsl:apply-templates select="yin:belongs-to"/>
-      <xsl:apply-templates select="ymt:text-media-type"/>
       <xsl:apply-templates select="yin:import"/>
       <xsl:apply-templates select="yin:include"/>
+      <xsl:apply-templates select="ymt:text-media-type"/>
       <xsl:apply-templates select="yin:organization"/>
       <xsl:apply-templates select="yin:contact"/>
       <xsl:apply-templates select="yin:description"/>
