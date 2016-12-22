@@ -55,10 +55,12 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 -->
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-		xmlns:yin="urn:ietf:params:xml:ns:yang:yin:1"
-		xmlns:html="http://www.w3.org/1999/xhtml"
-		version="1.0">
+<xsl:stylesheet
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:yin="urn:ietf:params:xml:ns:yang:yin:1"
+    xmlns:ymt="urn:ietf:params:xml:ns:yang:ietf-yang-text-media-type"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    version="1.0">
   <xsl:output method="text"/>
   <xsl:strip-space elements="*"/>
 
@@ -209,7 +211,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
       <xsl:text>&#xA;</xsl:text>
     </xsl:if>
     <xsl:call-template name="indent"/>
-    <xsl:value-of select="local-name(.)"/>
+    <xsl:value-of select="name(.)"/>
   </xsl:template>
 
   <xsl:template name="statement">
@@ -327,6 +329,12 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
   <xsl:template match="/">
     <xsl:apply-templates select="yin:module|yin:submodule|comment()"/>
+  </xsl:template>
+
+  <xsl:template match="ymt:text-media-type[@type='text/html']">
+    <xsl:call-template name="statement-dq">
+      <xsl:with-param name="arg">text/markdown</xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template
