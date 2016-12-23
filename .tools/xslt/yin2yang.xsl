@@ -544,7 +544,8 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     <xsl:if test="position()>1">
       <xsl:value-of select="concat('&#xA;&#xA;',$prefix)"/>
     </xsl:if>
-    <xsl:apply-templates select="text()|html:br" mode="fill">
+    <xsl:apply-templates select="text()|html:br|html:em|html:strong"
+			 mode="fill">
       <xsl:with-param name="prefix" select="$prefix"/>
       <xsl:with-param name="last" select="position()=last()"/>
     </xsl:apply-templates>
@@ -572,6 +573,20 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     <xsl:param name="prefix"/>
     <xsl:param name="last"/>
     <xsl:value-of select="concat('&#xA;',$prefix)"/>
+    <xsl:if test="$last and position()=last()">";&#xA;</xsl:if>
+  </xsl:template>
+
+  <xsl:template match="html:em" mode="fill">
+    <xsl:param name="prefix"/>
+    <xsl:param name="last"/>
+    <xsl:value-of select="concat('*',.,'*')"/>
+    <xsl:if test="$last and position()=last()">";&#xA;</xsl:if>
+  </xsl:template>
+
+  <xsl:template match="html:strong" mode="fill">
+    <xsl:param name="prefix"/>
+    <xsl:param name="last"/>
+    <xsl:value-of select="concat('**',.,'**')"/>
     <xsl:if test="$last and position()=last()">";&#xA;</xsl:if>
   </xsl:template>
 
