@@ -333,7 +333,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
   <xsl:template match="ymt:text-media-type[@type='text/html']">
     <xsl:call-template name="statement-dq">
-      <xsl:with-param name="arg">text/markdown</xsl:with-param>
+      <xsl:with-param name="arg">text/markdown; charset=UTF-8</xsl:with-param>
     </xsl:call-template>
   </xsl:template>
 
