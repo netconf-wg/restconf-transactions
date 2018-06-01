@@ -6,3 +6,7 @@
 <area>Operations and Management</area>
 <workgroup>NETMOD Working Group</workgroup>
 '>
+<!ENTITY netconf-wg '
+<area>Operations and Management</area>
+<workgroup>NETCONF Working Group</workgroup>
+'>
