@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module name="ietf-restconf-transactions"
+        xmlns="urn:ietf:params:xml:ns:yang:yin:1"
+        xmlns:md="urn:ietf:params:xml:ns:yang:ietf-restconf-transactions"
+        xmlns:h="http://www.w3.org/1999/xhtml"
+        xmlns:xi="http://www.w3.org/2001/XInclude">
+  <namespace uri="urn:ietf:params:xml:ns:yang:ietf-restconf-transactions"/>
+  <prefix value="rct"/>
+  <organization>
+    <text>IETF NETCONF (Network Configuration) Working Group</text>
+  </organization>
+  <contact>
+    <text>
+      <xi:include href=".tools/bplate/netconf-module.yinx"
+                  xpointer="xpointer(id('contact')/*)"/>
+      <h:p>
+        Editor:   Ladislav Lhotka<h:br/>
+                  &lt;mailto:lhotka@nic.cz&gt;
+      </h:p>
+    </text>
+  </contact>
+  <description>
+    <text>
+      <h:p>This module defines operations that implement transactions
+      in the RESTCONF protocol.</h:p>
+      <xi:include href=".tools/bplate/netconf-module.yinx"
+                  xpointer="xpointer(id('desc')/*)"/>
+    </text>
+  </description>
+  <revision date="2018-05-21">
+    <description>
+      <text>Initial revision.</text>
+    </description>
+    <reference>
+      <text>
+	RFC XXXX: RESTCONF with Transactions
+      </text>
+    </reference>
+  </revision>
+
+  <!-- Operations -->
+  
+  <rpc name="commit">
+    <description>
+      <text>Atomically merge the contents of client's staging
+      datastore into the intended datastore.</text>
+    </description>
+  </rpc>
+
+  <rpc name="reset">
+    <description>
+      <text>Reset the client's staging datastore so that its contents
+      is identical to the contents of the intended repository.</text>
+    </description>
+  </rpc>
+
+  <rpc name="status">
+    <description>
+      <text>Return the status of the client's staging datastore
+      relative to the intended datastore.</text>
+    </description>
+    <output>
+      <leaf name="status">
+	<mandatory value="true"/>
+	<type name="enumeration">
+	  <enum name="clean">
+	    <description>
+	      <text>The contents of &lt;staging&gt; and
+	      &lt;intended&gt; are identical.</text>
+	    </description>
+	  </enum>
+	  <enum name="dirty">
+	    <description>
+	      <text>The contents of &lt;staging&gt; and
+	      &lt;intended&gt; differ.</text>
+	    </description>
+	  </enum>
+	</type>
+	<description>
+	  <text>Status of &lt;staging&gt; relative to
+	  &lt;intended&gt;.</text>
+	</description>
+      </leaf>
+    </output>
+  </rpc>
+  
+</module>
