@@ -42,8 +42,14 @@
   
   <rpc name="commit">
     <description>
-      <text>Atomically merge the contents of client's staging
-      datastore into the intended datastore.</text>
+      <text>
+	<h:p>Atomically merge the contents of client's staging
+	datastore into the intended datastore.</h:p>
+	<h:p>If a merge conflict occurs that cannot be automatically
+	resolved, the server SHALL send an error report with
+	error-app-tag set to 'merge-conflict' and error-info
+	indicating the reason for the conflict.</h:p>
+      </text>
     </description>
   </rpc>
 
@@ -54,34 +60,4 @@
     </description>
   </rpc>
 
-  <rpc name="status">
-    <description>
-      <text>Return the status of the client's staging datastore
-      relative to the intended datastore.</text>
-    </description>
-    <output>
-      <leaf name="status">
-	<mandatory value="true"/>
-	<type name="enumeration">
-	  <enum name="clean">
-	    <description>
-	      <text>The contents of &lt;staging&gt; and
-	      &lt;intended&gt; are identical.</text>
-	    </description>
-	  </enum>
-	  <enum name="dirty">
-	    <description>
-	      <text>The contents of &lt;staging&gt; and
-	      &lt;intended&gt; differ.</text>
-	    </description>
-	  </enum>
-	</type>
-	<description>
-	  <text>Status of &lt;staging&gt; relative to
-	  &lt;intended&gt;.</text>
-	</description>
-      </leaf>
-    </output>
-  </rpc>
-  
 </module>

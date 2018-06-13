@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE rfc SYSTEM ".tools/schema/rfc2629.dtd" [
+<!ENTITY % COMMON SYSTEM ".tools/bplate/common.ent">
+%COMMON;
+<!ENTITY % WG SYSTEM ".tools/bplate/ietf-wg.ent">
+%WG;
+<!ENTITY % stdrefs SYSTEM "stdrefs.ent">
+%stdrefs;
+<!ENTITY % figures SYSTEM "figures.ent">
+%figures;
+<!ENTITY % yang SYSTEM "yang.ent">
+%yang;
+<!ENTITY intended '&lt;intended&gt;'>
+<!ENTITY operational '&lt;operational&gt;'>
+]>
+
+<?rfc strict="yes"?>
+<?rfc toc="yes"?>
+<?rfc tocdepth="3"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+
+<rfc category="std">
+  <front>
+    <title abbrev="RESTCONF with Transactions">RESTCONF with
+    Transactions</title>
+    <author fullname="Ladislav Lhotka" initials="L." surname="Lhotka">
+      <organization>CZ.NIC</organization>
+      <address>
+        <email>lhotka@nic.cz</email>
+      </address>
+    </author>
+    <date year="2018-06-01"/>
+    <area/>
+    &netmod-wg;
+
+    <abstract>
+      <t>This document extends the RESTCONF protocols with transaction
+      capabilities that allow for safe concurrent access of multiple
+      clients.</t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section anchor="introduction" title="Introduction">
+
+      <t>The RESTCONF protocol <xref target="RFC8040"/> was introduced
+      as a simpler alternative to the original NETCONF protocol <xref
+      target="RFC6241"/>. Due to the simplicity requirement, some more
+      complex features and functions of NETCONF, such as locks,
+      subtree filtering or candidate configuration datastore, are not
+      available in RESTCONF.</t>
+      <t>On the other hand, RESTCONF offers several advantages over
+      NETCONF, including:
+      <list style="symbols">
+	<t>the use of HTTP methods and well-known Representational
+	State Transfer (REST) approaches make it more accessible to
+	developers and increases the choice of software libraries and
+	tools</t>
+	<t>cleaner semantics of edit operations,</t>
+	<t>alternative encodings in which resources can be
+	represented, currently JSON and XML; NETCONF supports only
+	XML</t>
+	<t>certain HTTP mechanisms, such as "Last-Modified" and "ETag"
+	headers.</t>
+      </list></t>
+
+      <t>This document extends the RESTCONF protocol with transaction
+      capabilities, at the cost of adding two RPC operations and some
+      complexity in the server implementation. This makes RESTCONF
+      suitable for network management environments where concurrent
+      access of multiple client is needed.</t>
+      
+      <t>A RESTCONF server indicates support for transactions as
+      defined in this document by including the YANG module
+      "ietf-restconf-transactions" (<xref target="yang-module"/>)
+      among implemented modules in its YANG library data <xref
+      target="I-D.ietf-netconf-rfc7895bis"/>.</t>
+    </section>
+
+    <section anchor="terminology" title="Terminology">
+
+      &kw-2119;
+
+      <section anchor="yang" title="YANG">
+	<t>The following terms are defined in <xref
+	target="RFC7950"/>:
+	<list style="symbols">
+	  <t>RPC operation</t>
+	</list></t>
+      </section>
+      
+      <section anchor="http" title="HTTP">
+	<t>The following terms are defined in <xref
+	target="RFC7231"/>:
+	<list style="symbols">
+	  <t>resource</t>
+	</list></t>
+	<t>The following terms are defined in <xref
+	target="RFC7232"/>:
+	<list style="symbols">
+	  <t>entity-tag</t>
+	</list></t>
+      </section>
+      
+      <section anchor="restconf" title="RESTCONF">
+	<t>The following terms are defined in <xref
+	target="RFC8040"/>:
+	<list style="symbols">
+	  <t>client</t>
+	  <t>RESTCONF root resource, {+restconf}</t>
+	</list></t>
+      </section>
+      
+      <section anchor="nmda" title="NMDA">
+	<t>The following terms are defined in <xref
+	target="RFC8342"/>:
+	<list style="symbols">
+	  <t>candidate configuration datastore, &lt;candidate&gt;</t>
+	  <t>intended configuration datastore, &intended;</t>
+	  <t>operational state datastore, &operational;</t>
+	  <t>running configuration datastore, &lt;running&gt;</t>
+	</list></t>
+      </section>
+
+      <section anchor="new-terms" title="New Terms">
+	<t>The following new term is used in this document:
+	<list style="symbols">
+	  <t>staging configuration datastore: a configuration
+	  datastore that represents a staging area private to each
+	  RESTCONF user, and that is eventually commited into
+	  &intended;.</t>
+	</list></t>
+      </section>
+      
+    </section>
+    
+    <section anchor="datastores" title="Datastores">
+
+      <t>A RESTCONF server implementing this document MUST be
+      NMDA-compliant <xref
+      target="I-D.ietf-netconf-nmda-restconf"/>. Apart from the
+      operational state datastore, it MUST also support the intended
+      configuration datastore.</t>
+
+      <t>The intended configuration datastore SHOULD persist across
+      server reboots. In terms of the NMDA architecture <xref
+      target="RFC8342"/>, &intended; can be considered identical to
+      &lt;running&gt;, although this document does not explicitly use
+      the latter datastore.</t>
+
+      <section anchor="staging"
+	       title="The Staging Configuration Datastore">
+	
+	<t>This document introduces a new configuration datastore
+	named 'staging' that represents a staging area private to each
+	user (as identified by RESTCONF username, see <xref
+	target="RFC8040"/> Section 2.5).</t>
+	<t>In NETCONF terms (<xref target="RFC8040"/> Section 8.3),
+	the staging datastore is essentially a non-shared candidate
+	configuration datastore. The new name is used in order to
+	emphasize the narrower semantics: the staging datastore MUST
+	be private to each user.</t>
+	<t>Note that the above requirement does not necessarily mean
+	that each user is provided with a separate copy of
+	configuration data. For instance, several efficient methods
+	utilizing persistent data structures and copy-on-write are
+	available. However, the particular implementation approach is
+	outside the scope of this document.</t>
+	<t>The staging datastore assumes the place of the datastore
+	resource as defined in <xref target="RFC8040"/> Section
+	3.4. This means that all resources inside the
+	"{+restconf}/data" subtree correspond to data instances in the
+	staging datastore. Therefore, the contents of the staging
+	datastore can be retrieved by means of the GET method and
+	modified by means of PUT, POST and PATCH methods exactly as
+	specified in <xref target="RFC8040"/>. However, the changes to
+	the staging datastore MUST NOT impact operational state of the
+	device until they are merged into &intended; via the "commit"
+	operation (<xref target="commit"/>).</t>
+      </section>
+    </section>
+
+    <section anchor="operations" title="New Operations">
+      <t>In order to support transactions in RESTCONF, the YANG module
+      "ietf-restconf-transactions" defines two RPC operations
+      described below.</t>
+
+      <section anchor="commit" title="Commit">
+	
+	<t>The "commit" operation atomically merges the contents of
+	the client's staging datastore into &intended;.</t>
+     
+	<t>The concrete strategy and implementation of the merge
+	procedure is outside the scope of this document. The
+	resolution of merge conflicts can be fully automatic, which is
+	preferable, or may require client's intervention. In the
+	latter case, the server SHALL send an error response with the
+	following properties:
+	<list style="symbols">
+	  <t>HTTP status code 412</t>
+	  <t>error-tag of "operation-failed"</t>
+	  <t>error-app-tag of "merge-conflict"</t>
+	  <t>error-info containing additional information to aid the
+	  user in resolving the conflict.</t>
+	</list></t>
+
+      </section>
+
+      <section anchor="reset" title="Reset">
+
+	<t>The "reset" operation resets the user's staging datastore
+	to the current contents of &intended;.</t>
+	<t>If the server supports entity-tags (see <xref
+	target="RFC8040"/> Section 3.5.2), then after completing the
+	"reset" operation the entity-tags for the staging and intended
+	datastore resources MUST be identical.</t>
+      </section>
+    </section>
+
+    <section anchor="nacm" title="Access Control">
+      <t>A server that implements this document along with NETCONF
+      Access Control Model <xref target="RFC8341"/> MUST guarantee
+      that all NACM rules are observed. This means in particular:
+      <list style="symbols">
+	<t>Configuration data that is not readable for a given user
+	MUST NOT be exposed in the user's staging datastore.</t>
+	<t>A commit operation executed by a given user MUST NOT modify
+	configuration data in &intended; in a way that is not
+	compliant with NACM rules that are in effect for that
+	user.</t>
+      </list></t>
+    </section>
+
+    <section anchor="compatibility" title="Compatibility">
+
+      <t>RESTCONF with transactions, as defined in this document, is
+      compatible with the original RESTCONF specification <xref
+      target="RFC8040"/> and RESTCONF NMDA extensions <xref
+      target="I-D.ietf-netconf-nmda-restconf"/>.</t>
+      <t>In practical terms, standard RESTCONF clients are able to
+      retrieve and edit data in the staging configuration
+      datastore. If they support NMDA, they can also retrieve data
+      from &intended; and &operational;. In order to make them useful
+      for network management, it is only necessary to allow for
+      executing the "commit" and "reset" operations. This can be
+      accomplished through simple scripts utilizing <eref
+      target="https://curl.haxx.se">curl</eref> or similar tools.</t>
+      
+    </section>
+
+    <section anchor="yang-module" title="YANG Module">
+
+      &ed-hint-fill-in;
+
+      <figure>
+	&ietf-restconf-transactions.yang;
+      </figure>
+
+    </section>
+
+    <section anchor="iana" title="IANA Considerations">
+
+      &ed-hint-fill-in;
+
+      <t>This document registers one URI in the IETF XML Registry
+      <xref target="RFC3688"/>. The following registration has been
+      made:</t>
+      <figure>
+	<artwork><![CDATA[
+  URI: urn:ietf:params:xml:ns:yang:ietf-restconf-transactions
+
+  Registrant Contact: The IESG.
+
+  XML: N/A, the requested URI is an XML namespace.
+  ]]></artwork>
+      </figure>
+
+      <t>This document registers one YANG module in the YANG Module
+      Names Registry <xref target="RFC6020"/>. The following
+      registration has been made:</t>
+
+      <figure>
+        <artwork><![CDATA[
+  name:       ietf-restconf-transactions
+  namespace:  urn:ietf:params:xml:ns:yang:ietf-restconf-transactions
+  prefix:     rct
+  reference:  RFC XXXX
+  ]]></artwork>
+      </figure>
+    </section>
+
+    <section anchor="security" title="Security Considerations">
+      <t>TBD</t>
+
+    </section>
+
+  </middle>
+
+  <back>
+    <references title="Normative References">
+      &RFC2119;
+      &RFC3688;
+      &RFC6020;
+      &RFC6241;
+      &RFC7231;
+      &RFC7232;
+      &RFC7950;
+      &RFC8040;
+      &RFC8341;
+      &RFC8342;
+      &I-D.ietf-netconf-nmda-restconf;
+      &I-D.ietf-netconf-rfc7895bis;
+    </references>
+
+  </back>
+</rfc>

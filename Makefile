@@ -3,11 +3,7 @@ REVNO = 00
 DATE ?= $(shell date +%F)
 MODULES = ietf-restconf-transactions
 SUBMODULES =
-FIGURES = model.tree
-EXAMPLE_BASE = example
-EXAMPLE_TYPE = get-reply
-baty = $(EXAMPLE_BASE)-$(EXAMPLE_TYPE)
-EXAMPLE_INST = $(baty).xml
+FIGURES =
 PYANG_OPTS =
 
 # Paths for pyang
@@ -16,18 +12,16 @@ export PYANG_XSLT_DIR ?= /usr/share/yang/xslt
 export YANG_MODPATH ?= .:/usr/share/yang/modules/ietf:/usr/share/yang/modules/iana
 
 yams = $(addsuffix .yang, $(MODULES))
-artworks = $(addsuffix .aw, $(yams)) $(EXAMPLE_INST).aw \
+artworks = $(addsuffix .aw, $(yams)) \
 	   $(addsuffix .aw, $(FIGURES))
 idrev = $(I_D)-$(REVNO)
 xsldir = .tools/xslt
 xslpars = --stringparam date $(DATE) --stringparam i-d-name $(I_D) \
 	  --stringparam i-d-rev $(REVNO)
-schemas = $(baty).rng $(baty).sch $(baty).dsrl
-y2dopts = -t $(EXAMPLE_TYPE) -b $(EXAMPLE_BASE)
 
 .PHONY: all clean rnc refs validate yang
 
-all: $(idrev).txt $(schemas) model.tree
+all: $(idrev).txt model.tree
 
 refs: stdrefs.ent
 
@@ -62,9 +56,6 @@ yang.ent: $(yams)
 	@for f in $^; do                                                 \
 	  echo '<!ENTITY '"$$f SYSTEM \"$$f.aw\">" >> $@;          \
 	done
-ifneq ($EXAMPLE_INST,)
-	@echo '<!ENTITY '"$(EXAMPLE_INST) SYSTEM \"$(EXAMPLE_INST).aw\">" >> $@
-endif
 
 figures.ent: $(FIGURES)
 ifeq ($(FIGURES),)
@@ -94,16 +85,8 @@ ietf-%.yang.aw: ietf-%.yang
 	cat $< >> $@;                    \
 	echo ']]></artwork>' >> $@
 
-$(schemas): hello.xml
-	yang2dsdl $(y2dopts) -L $<
-
 %.rnc: %.rng
 	trang -I rng -O rnc $< $@
-
-rnc: $(baty).rnc
-
-validate: $(EXAMPLE_INST) $(schemas)
-	@yang2dsdl -j -s $(y2dopts) -v $<
 
 model.tree: hello.xml
 	pyang $(PYANG_OPTS) -f tree -o $@ -L $<
