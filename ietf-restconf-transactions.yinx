@@ -14,8 +14,12 @@
       <xi:include href=".tools/bplate/netconf-module.yinx"
                   xpointer="xpointer(id('contact')/*)"/>
       <h:p>
-        Editor:   Ladislav Lhotka<h:br/>
+        Author:   Ladislav Lhotka<h:br/>
                   &lt;mailto:lhotka@nic.cz&gt;
+      </h:p>
+      <h:p>
+        Author:   Rob Wilton<h:br/>
+                  &lt;mailto:rwilton@cisco.com&gt;
       </h:p>
     </text>
   </contact>
