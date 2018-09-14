@@ -10,3 +10,7 @@
 <area>Operations and Management</area>
 <workgroup>NETCONF Working Group</workgroup>
 '>
+<!ENTITY dnsop-wg '
+<area>Operations and Management</area>
+<workgroup>DNSOP Working Group</workgroup>
+'>
