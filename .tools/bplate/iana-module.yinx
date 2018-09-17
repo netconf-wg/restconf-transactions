@@ -12,8 +12,8 @@ be included in other YANG modules via XInclude.
   <organization xml:id="org">
     <text>Internet Assigned Numbers Authority (IANA)</text>
   </organization>
-  <contact xml:id="contact">
-    <text>
+  <contact>
+    <text xml:id="contact">
       <h:p>        Internet Assigned Numbers Authority</h:p>
       <h:p>
 	Postal: ICANN<h:br/>
