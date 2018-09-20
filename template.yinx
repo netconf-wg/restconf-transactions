@@ -6,9 +6,8 @@
         xmlns:xi="http://www.w3.org/2001/XInclude">
   <namespace uri="urn:ietf:params:xml:ns:yang:%%MODNAME%%"/>
   <prefix value="%%PRF%%"/>
-  <organization>
-    <text>IETF NETMOD (NETCONF Data Modeling Language) Working Group</text>
-  </organization>
+  <xi:include href=".tools/bplate/netmod-module.yinx"
+              xpointer="xpointer(id('org'))"/>
   <contact>
     <text>
       <xi:include href=".tools/bplate/netmod-module.yinx"
@@ -22,7 +21,7 @@
   <description>
     <text>
       <h:p>%%SHORT_MODULE_DESCRIPTION%%</h:p>
-      <xi:include href=".tools/bplate/netmod-module.yinx"
+      <xi:include href=".tools/bplate/common-module.yinx"
                   xpointer="xpointer(id('desc')/*)"/>
     </text>
   </description>

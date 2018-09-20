@@ -4,25 +4,25 @@ This dummy module contains pieces of boilerplate text that can
 be included in other YANG modules via XInclude.
 -->
 
-<module name="netconf-module"
+<module name="iana-module"
 	xmlns="urn:ietf:params:xml:ns:yang:yin:1"
 	xmlns:h="http://www.w3.org/1999/xhtml">
   <organization xml:id="org">
-    <text>IETF NETCONF (Network Configuration) Working Group</text>
+    <text>Internet Assigned Numbers Authority (IANA)</text>
   </organization>
   <contact>
     <text xml:id="contact">
+      <h:p>        Internet Assigned Numbers Authority</h:p>
       <h:p>
-	WG Web:   &lt;https://tools.ietf.org/wg/netconf/&gt;<h:br/>
-	WG List:  &lt;mailto:netconf@ietf.org&gt;
+	Postal: ICANN<h:br/>
+	        4676 Admiralty Way, Suite 330<h:br/>
+	        Marina del Rey, CA 90292
       </h:p>
       <h:p>
-	WG Chair: Kent Watsen<h:br/>
-	          &lt;mailto:kwatsen@juniper.net&gt;
+	Tel:    +1 310 823 9358
       </h:p>
       <h:p>
-	WG Chair: Mahesh Jethanandani<h:br/>
-	          &lt;mailto:mjethanandani@gmail.com&gt;
+	&lt;mailto:iana@iana.org&gt;
       </h:p>
     </text>
   </contact>

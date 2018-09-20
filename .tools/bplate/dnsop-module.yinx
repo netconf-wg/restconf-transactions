@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This dummy module contains pieces of boilerplate text that can
+be included in other YANG modules via XInclude.
+-->
+
+<module name="dnsop-module"
+	xmlns="urn:ietf:params:xml:ns:yang:yin:1"
+	xmlns:h="http://www.w3.org/1999/xhtml">
+  <organization xml:id="org">
+    <text>IETF DNSOP (Domain Name System Operations) Working Group</text>
+  </organization>
+  <contact>
+    <text xml:id="contact">
+      <h:p>
+	WG Web:   &lt;https://tools.ietf.org/wg/dnsop/&gt;<h:br/>
+	WG List:  &lt;mailto:dnsop@ietf.org&gt;
+      </h:p>
+      <h:p>
+	WG Chair: Benno Overeinder<h:br/>
+	          &lt;mailto:benno@NLnetLabs.nl&gt;
+      </h:p>
+      <h:p>
+	WG Chair: Suzanne Woolf<h:br/>
+	          &lt;mailto:suzworldwide@gmail.com&gt;
+      </h:p>
+      <h:p>
+	WG Chair: Tim Wicinski<h:br/>
+	          &lt;mailto:tjw.ietf@gmail.com&gt;
+      </h:p>
+    </text>
+  </contact>
+</module>

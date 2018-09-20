@@ -4,8 +4,12 @@ NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL"
 in this document are to be interpreted as described in <xref
 target="RFC2119"/>.</t>
 '>
-<!ENTITY ed-hint-fill-in '
-<t>RFC Editor: In this section, replace all occurrences of &apos;XXXX&apos;
+<!ENTITY ed-hint-rfcno '
+<t>RFC Editor: In this section, replace all occurrences of "XXXX"
+with the actual RFC number (and remove this note).</t>
+'>
+<!ENTITY ed-hint-rfcno-rev '
+<t>RFC Editor: In this section, replace all occurrences of "XXXX"
 with the actual RFC number and all occurrences of the revision date
 below with the date of RFC publication (and remove this note).</t>
 '>
