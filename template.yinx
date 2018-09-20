@@ -21,7 +21,7 @@
   <description>
     <text>
       <h:p>%%SHORT_MODULE_DESCRIPTION%%</h:p>
-      <xi:include href=".tools/bplate/netmod-module.yinx"
+      <xi:include href=".tools/bplate/common-module.yinx"
                   xpointer="xpointer(id('desc')/*)"/>
     </text>
   </description>

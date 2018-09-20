@@ -60,7 +60,7 @@
 
     <section anchor="yang" title="YANG Module">
 
-      <t></t>
+      &ed-hint-rfcno-rev;
 
       <!-- YANG modules are included this way:
 
@@ -74,7 +74,39 @@
     </section>
 
     <section anchor="iana" title="IANA Considerations">
-      <t></t>
+
+      &ed-hint-rfcno;
+
+      <section anchor="iana-uri">
+
+	<t>This document registers a URI in the "IETF XML Registry"
+	<xref target="RFC3688"/>. The following registration has been
+	made:</t>
+        <figure>
+          <artwork>
+   URI: urn:ietf:params:xml:ns:yang:%%MODNAME%%
+   Registrant Contact: The IESG.
+   XML: N/A, the requested URI is an XML namespace.
+          </artwork>
+        </figure>
+
+      </section>
+
+      <section anchor="iana-yang" title="YANG Module Registrations">
+
+        <t>This document registers a YANG module in the "YANG Module
+        Names" registry <xref target="RFC6020"/>. The following
+        registration has been made:</t>
+        <figure>
+          <artwork>
+   name:      %%MODNAME%%
+   namespace: urn:ietf:params:xml:ns:yang:%%MODNAME%%
+   prefix:    %%PRF%%
+   reference: RFC XXXX
+          </artwork>
+        </figure>
+      </section>
+
     </section>
 
     <section anchor="security" title="Security Considerations">
@@ -87,6 +119,8 @@
   <back>
     <references title="Normative References">
       &RFC2119;
+      &RFC3688;
+      &RFC6020;
       <!-- Generate other references by "make refs",
 	   and add entity references here. -->
     </references>
