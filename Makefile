@@ -19,7 +19,7 @@ xsldir = .tools/xslt
 xslpars = --stringparam date $(DATE) --stringparam i-d-name $(I_D) \
 	  --stringparam i-d-rev $(REVNO)
 
-.PHONY: all clean rnc refs validate yang
+.PHONY: all clean gittag rnc refs validate yang
 
 all: $(idrev).txt model.tree
 
@@ -90,6 +90,10 @@ ietf-%.yang.aw: ietf-%.yang
 
 model.tree: hello.xml
 	pyang $(PYANG_OPTS) -f tree -o $@ -L $<
+
+gittag: $(idrev).txt
+	git tag -a -s -m "I-D revision $(REVNO)" "rev-$(REVNO)"
+	git push --follow-tags
 
 clean:
 	@rm -rf *.rng *.rnc *.sch *.dsrl hello.xml model.tree \
