@@ -26,7 +26,7 @@ xslpars = --stringparam date $(DATE) --stringparam i-d-name $(I_D) \
 schemas = $(baty).rng $(baty).sch $(baty).dsrl
 y2dopts = -t $(EXAMPLE_TYPE) -b $(EXAMPLE_BASE)
 
-.PHONY: all clean rnc refs validate yang
+.PHONY: all clean gittag rnc refs validate yang
 
 all: $(idrev).txt $(schemas) model.tree
 
@@ -108,6 +108,10 @@ validate: $(EXAMPLE_INST) $(schemas)
 
 model.tree: hello.xml
 	pyang $(PYANG_OPTS) -f tree -o $@ -L $<
+
+gittag: $(idrev).txt
+	git tag -a -s -m "I-D revision $(REVNO)" "rev-$(REVNO)"
+	git push --follow-tags
 
 clean:
 	@rm -rf *.rng *.rnc *.sch *.dsrl hello.xml model.tree \
