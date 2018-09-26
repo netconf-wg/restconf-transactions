@@ -1,5 +1,5 @@
 I_D = draft-lhotka-netconf-restconf-transactions
-REVNO = 00
+REVNO = 01
 DATE ?= $(shell date +%F)
 MODULES = ietf-restconf-transactions
 SUBMODULES =
