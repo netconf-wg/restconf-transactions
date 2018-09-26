@@ -1,5 +1,5 @@
-RESTCONF with Transaction
-=========================
+RESTCONF with Transactions
+==========================
 
 Development of Internet-Draft [draft-lhotka-netconf-restconf-transactions](https://tools.ietf.org/html/draft-lhotka-netconf-restconf-transactions-00).
 
