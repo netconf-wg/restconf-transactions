@@ -27,7 +27,7 @@
     <text>
       <h:p>This module defines operations that implement transactions
       in the RESTCONF protocol.</h:p>
-      <xi:include href=".tools/bplate/netconf-module.yinx"
+      <xi:include href=".tools/bplate/common-module.yinx"
                   xpointer="xpointer(id('desc')/*)"/>
     </text>
   </description>

@@ -259,7 +259,7 @@
 
     <section anchor="yang-module" title="YANG Module">
 
-      &ed-hint-fill-in;
+      &ed-hint-rfcno-rev;
 
       <figure>
 	&ietf-restconf-transactions.yang;
@@ -269,7 +269,7 @@
 
     <section anchor="iana" title="IANA Considerations">
 
-      &ed-hint-fill-in;
+      &ed-hint-rfcno;
 
       <t>This document registers one URI in the IETF XML Registry
       <xref target="RFC3688"/>. The following registration has been
