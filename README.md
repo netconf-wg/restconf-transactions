@@ -1,23 +1,12 @@
-YANG-I-D
-========
+RESTCONF with Transaction
+=========================
 
-[Fork](https://github.com/llhotka/YANG-I-D/wiki/Fork) this project to
-create an environment for integrated development of Internet-Drafts
-and YANG modules
-in
-[extended YIN](https://gitlab.labs.nic.cz/labs/yang-tools/wikis/editing_yang#yin-schema-extensions)
-syntax.
+Development of Internet-Draft [draft-lhotka-netconf-restconf-transactions](https://tools.ietf.org/html/draft-lhotka-netconf-restconf-transactions-00).
 
-Edit the forked project's README according to the following template:
+* [Current I-D text](https://github.com/netconf-wg/restconf-transactions/wiki/ID_text)
+* YANG module [ietf-restconf-transactions](https://github.com/netconf-wg/restconf-transactions/wiki/YANG_module)
 
 ---
-
-_PROJECT NAME_
-==============
-
-_Description of the project._
-
-_Put project-specific instructions here._
 
 Generic YANG-I-D [instructions](https://github.com/llhotka/YANG-I-D/wiki/Instructions).
 
